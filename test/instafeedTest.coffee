@@ -82,27 +82,27 @@ describe 'Instafeed instace', ->
     feed = new Instafeed
       clientId: 'test'
       get: 'tagged'
-    (-> feed._buildUrl()).should.throw "No tag name specified. Use the 'tagName' option."
+    (-> feed._buildUrl()).should.throw /no tag name specified/i
 
   it 'should refuse to build a url if get=location and there is no location id set', ->
     feed = new Instafeed
       clientId: 'test'
       get: 'location'
-    (-> feed._buildUrl()).should.throw "No location specified. Use the 'locationId' option."
+    (-> feed._buildUrl()).should.throw /no location specified/i
 
   it 'should refuse to build a url if get=user and there is no userId', ->
     feed = new Instafeed
       clientId: 'test'
       get: 'user'
       accessToken: 'mytoken'
-    (-> feed._buildUrl()).should.throw "No user specified. Use the 'userId' option."
+    (-> feed._buildUrl()).should.throw /no user specified/i
 
   it 'should refuse to build a url if get=user and there is no accessToken', ->
     feed = new Instafeed
       clientId: 'test'
       get: 'user'
       userId: 1
-    (-> feed._buildUrl()).should.throw "No access token. Use the 'accessToken' option."
+    (-> feed._buildUrl()).should.throw /no access token/i
 
   it 'should run a before & after callback functions', ->
     timesRan = 0
